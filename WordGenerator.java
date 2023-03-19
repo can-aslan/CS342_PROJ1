@@ -8,12 +8,12 @@ import java.util.List;
 
 public class WordGenerator {
     final static boolean IS_WORDLIST_MODE = true; // true = take inputs from word list, false = generate random words
-    final static int WORDLIST_LINE_LIMIT = 100;
+    final static int WORDLIST_LINE_LIMIT = 10;
     final static String WORDLIST_FILENAME = "wordlist.txt";
     final static String FILE_FORMAT = "in";
     final static int NUM_OF_FILES = 4;
-    final static int CHAR_LIMIT = 10; // 63;
-    final static char[] ALPHANUMERIC ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#!".toCharArray();
+    final static int CHAR_LIMIT = 10; // 63; // used only in not wordlist mode
+    final static char[] ALPHANUMERIC ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#!".toCharArray(); // used only in not wordlist mode
     final static int MAX_WORDS = 10000;
 
     public static void main(String[] args) throws IOException {
@@ -41,7 +41,7 @@ public class WordGenerator {
 
         for (int curFile = 0; curFile < NUM_OF_FILES; curFile++) {
             PrintWriter write = new PrintWriter(new File(FILE_FORMAT + curFile + ".txt"));
-            int words = (int) (Math.random() * MAX_WORDS);
+            int words = Math.max((int) (Math.random() * MAX_WORDS), 8 * MAX_WORDS / 10);
 
             if (IS_WORDLIST_MODE) {
                 for (int curWord = 0; curWord < words; curWord++) {
