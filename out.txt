@@ -1,0 +1,12 @@
+==========================================================================================================
+time ./proctopk 1000 out1 1 in0.txt
+time ./proctopk 1000 out1 2 in0.txt in1.txt
+time ./proctopk 1000 out1 3 in0.txt in1.txt in2.txt
+time ./proctopk 1000 out1 4 in0.txt in1.txt in2.txt in3.txt
+time ./proctopk 1000 out1 5 in0.txt in1.txt in2.txt in3.txt in4.txt
+time ./proctopk 1000 out1 6 in0.txt in1.txt in2.txt in3.txt in4.txt in5.txt
+time ./proctopk 1000 out1 7 in0.txt in1.txt in2.txt in3.txt in4.txt in5.txt in6.txt
+time ./proctopk 1000 out1 8 in0.txt in1.txt in2.txt in3.txt in4.txt in5.txt in6.txt in7.txt
+time ./proctopk 1000 out1 9 in0.txt in1.txt in2.txt in3.txt in4.txt in5.txt in6.txt in7.txt in8.txt
+time ./proctopk 1000 out1 10 in0.txt in1.txt in2.txt in3.txt in4.txt in5.txt in6.txt in7.txt in8.txt in9.txt
+==========================================================================================================

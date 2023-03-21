@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class InvocationGenerator {
@@ -11,22 +14,31 @@ public class InvocationGenerator {
     final static String IN_FILE_FORMAT = ".txt";
     final static String       OUT_FILE = "out";
 
-    public static void main(String[] args) {
+    final static String PREFIX_COMMAND = "time "; // Must add a space after the command
+
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner scan = new Scanner(System.in);
         
         String executable = "";
         
-        while (!executable.equalsIgnoreCase("P") && !executable.equalsIgnoreCase("T")) {
+        while (
+            !executable.equalsIgnoreCase("P")
+            && !executable.equalsIgnoreCase("T")
+            && !executable.equals(THREAD_EXE)
+            && !executable.equals(PROC_EXE)
+            ) {
             System.out.print("Process (P/p) or Thread (T/t)? Answer: ");
             executable = scan.nextLine();
 
             switch (executable) {
                 case "p":
                 case "P":
+                    executable = PROC_EXE;
                     System.out.println("Selected: Process.");
                     break;
                 case "t":
                 case "T":
+                    executable = THREAD_EXE;
                     System.out.println("Selected: Thread.");
                     break;
                 default:
@@ -63,10 +75,17 @@ public class InvocationGenerator {
             System.out.println("Selected n = " + n + ".");
         }
 
-        System.out.println("==========================================================================================================");
-        System.out.println("Command: " + generateInvocation(executable, k, n));
-        System.out.println("==========================================================================================================");
+        System.out.println("Generating...");
 
+        PrintWriter write = new PrintWriter(new File(OUT_FILE + IN_FILE_FORMAT));
+        write.println("==========================================================================================================");
+        for (int i = 1; i <= n; i++) {
+            write.println(PREFIX_COMMAND + generateInvocation(executable, k, i));
+        }
+        write.println("==========================================================================================================");
+
+        System.out.println("Done!");
+        write.close();
         scan.close();
     }
 
